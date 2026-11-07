@@ -1,0 +1,495 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Incipit Vita Nova</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Alegreya+SC:wght@500;700&family=Grenze+Gotisch:wght@500;700&display=swap">
+<style>
+/* Layout: una pagina del "libro de la memoria" proiettata alla LIM — rubrica in alto, 31 paragrafi come segnalibro, scena e tre scelte con iniziali lombarde rosse e blu */
+:root{
+  --vellum:#f6f3ec;
+  --leaf:#fffdf8;
+  --ink:#2b231e;
+  --ink-soft:#5f544b;
+  --sanguigno:#8c1d2a;
+  --lapis:#25407c;
+  --oro:#a27a1c;
+  --rule:#d9d0c1;
+  --shade:rgba(43,35,30,.08);
+  --veil:rgba(30,22,18,.62);
+  --f-display:"Grenze Gotisch","UnifrakturMaguntia",Georgia,serif;
+  --f-body:"Alegreya",Georgia,"Times New Roman",serif;
+  --f-rubric:"Alegreya SC","Alegreya",Georgia,serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --vellum:#16141b;--leaf:#1f1c25;--ink:#ece5d8;--ink-soft:#b9ae9f;--sanguigno:#e46a72;--lapis:#93abe8;--oro:#d8b45c;--rule:#3a3542;--shade:rgba(0,0,0,.35);--veil:rgba(5,4,8,.72);color-scheme:dark}}
+:root[data-theme="dark"]{--vellum:#16141b;--leaf:#1f1c25;--ink:#ece5d8;--ink-soft:#b9ae9f;--sanguigno:#e46a72;--lapis:#93abe8;--oro:#d8b45c;--rule:#3a3542;--shade:rgba(0,0,0,.35);--veil:rgba(5,4,8,.72);color-scheme:dark}
+
+html{font-size:clamp(17px,1.15vw + 9px,24px)}
+body{background:var(--vellum);color:var(--ink);font-family:var(--f-body);font-size:1rem;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 2rem}
+.wrap{max-width:52rem;margin:0 auto}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--oro);outline-offset:3px;border-radius:4px}
+
+/* Rubrica in alto */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--vellum);padding-block:.7rem .5rem;border-bottom:1px solid var(--rule)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--vellum)}
+.toprow{display:flex;align-items:center;justify-content:space-between;gap:.6rem;flex-wrap:wrap}
+.where{font-family:var(--f-rubric);color:var(--sanguigno);letter-spacing:.06em;font-size:.85rem}
+.where b{color:var(--ink);font-weight:700}
+.tools{display:flex;gap:.4rem;flex-wrap:wrap}
+.tool{background:none;border:1px solid var(--rule);border-radius:999px;padding:.25rem .8rem;font-family:var(--f-rubric);font-size:.75rem;letter-spacing:.05em;color:var(--ink-soft)}
+.tool:hover{border-color:var(--sanguigno);color:var(--sanguigno)}
+.ticks{display:grid;grid-template-columns:repeat(31,1fr);gap:3px;margin-top:.55rem}
+.tick{height:.42rem;border-radius:1px;background:var(--rule);position:relative}
+.tick.done{background:var(--oro)}
+.tick.now{background:var(--sanguigno)}
+.ticklab{display:flex;justify-content:space-between;font-family:var(--f-rubric);font-size:.62rem;color:var(--ink-soft);letter-spacing:.06em;margin-top:.2rem}
+
+/* Scena */
+main{padding-top:1.4rem}
+.act{font-family:var(--f-rubric);color:var(--lapis);letter-spacing:.08em;font-size:.85rem}
+h1,h2{font-family:var(--f-display);font-weight:500;text-wrap:balance;line-height:1.1;margin:.15rem 0 .8rem}
+h2{font-size:2.3rem;color:var(--ink)}
+.narr{font-size:1.12rem;max-width:65ch}
+.narr p{margin:0 0 .7rem}
+.narr p:first-child::first-letter{font-family:var(--f-display);float:left;font-size:3.6rem;line-height:.82;padding:.28rem .4rem 0 0;color:var(--sanguigno)}
+.narr q{quotes:"«" "»";font-style:italic;color:var(--sanguigno)}
+.ask{font-weight:700;font-size:1.2rem;margin:1rem 0 .8rem}
+
+.opts{display:grid;gap:.7rem}
+.opt{display:grid;grid-template-columns:3rem 1fr;align-items:center;gap:.8rem;text-align:left;background:var(--leaf);border:1px solid var(--rule);border-radius:6px;padding:.75rem 1rem .75rem .6rem;font-size:1.08rem;line-height:1.4;box-shadow:0 1px 0 var(--shade);transition:transform .15s ease,border-color .15s ease}
+.opt:hover{border-color:var(--ink-soft);transform:translateX(4px)}
+.opt .L{font-family:var(--f-display);font-size:2.4rem;line-height:1;text-align:center}
+.opt:nth-child(odd) .L{color:var(--sanguigno)}
+.opt:nth-child(even) .L{color:var(--lapis)}
+.opt span{min-width:0}
+
+/* Esito giusto */
+.libello{margin-top:1rem;border-top:2px solid var(--oro);padding-top:.9rem}
+.libello .rub{font-family:var(--f-rubric);color:var(--oro);letter-spacing:.08em;font-size:.85rem}
+.chosen{font-size:1.08rem;margin:.3rem 0 .8rem;padding-left:.9rem;border-left:3px solid var(--oro)}
+.cit{font-style:italic;font-size:1.15rem;color:var(--sanguigno);margin:.4rem 0}
+.cit cite{font-style:normal;font-family:var(--f-rubric);font-size:.8rem;color:var(--ink-soft);letter-spacing:.05em;margin-left:.4rem}
+.gloss{color:var(--ink-soft);font-size:1rem;margin:.5rem 0 0;max-width:65ch}
+.poem{display:inline-block;margin-top:.6rem;font-family:var(--f-rubric);font-size:.9rem;letter-spacing:.04em;color:var(--lapis)}
+.go{margin-top:1.1rem;background:var(--sanguigno);color:var(--leaf);border:0;border-radius:6px;padding:.65rem 1.4rem;font-family:var(--f-rubric);letter-spacing:.06em;font-size:1rem}
+.go:hover{filter:brightness(1.1)}
+.go.ghost{background:none;color:var(--ink);border:1px solid var(--rule)}
+.hintkeys{font-size:.75rem;color:var(--ink-soft);margin-top:.9rem;font-family:var(--f-rubric);letter-spacing:.05em}
+
+/* Bad ending */
+.veil{position:fixed;inset:0;background:var(--veil);display:grid;place-items:center;z-index:20;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.card{background:var(--leaf);color:var(--ink);max-width:40rem;width:100%;max-height:100%;overflow:auto;border-radius:8px;padding:1.4rem 1.6rem 1.5rem;border:1px solid var(--rule);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.explicit{font-family:var(--f-display);color:var(--sanguigno);font-size:1.4rem;letter-spacing:.02em}
+.explicit small{font-family:var(--f-rubric);font-size:.75rem;color:var(--ink-soft);letter-spacing:.06em;margin-left:.5rem}
+.card h3{font-family:var(--f-display);font-weight:500;font-size:2.1rem;line-height:1.1;margin:.2rem 0 .7rem;text-wrap:balance}
+.card .tale{font-size:1.1rem;margin:0 0 .9rem}
+.morale{font-size:.98rem;color:var(--ink-soft);border-top:1px dashed var(--rule);padding-top:.7rem;margin:0}
+.morale b{font-family:var(--f-rubric);color:var(--lapis);font-weight:500;letter-spacing:.05em}
+.row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
+.shake{animation:shake .45s ease}
+@keyframes shake{20%{transform:rotate(-1.2deg)}40%{transform:rotate(1deg)}60%{transform:rotate(-.6deg)}80%{transform:rotate(.3deg)}}
+
+/* Copertina e finale */
+.cover{padding-top:1.6rem}
+.cover h1{font-size:clamp(3rem,7vw,5.2rem);color:var(--sanguigno);margin-bottom:.3rem}
+.cover .sub{font-size:1.2rem;max-width:60ch;margin:0 0 1.2rem}
+.acts{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:.6rem;margin-top:1.2rem}
+.actbtn{text-align:left;background:var(--leaf);border:1px solid var(--rule);border-radius:6px;padding:.7rem .9rem}
+.actbtn:hover{border-color:var(--lapis)}
+.actbtn .n{font-family:var(--f-rubric);color:var(--lapis);font-size:.78rem;letter-spacing:.07em;display:block}
+.actbtn .t{font-family:var(--f-display);font-size:1.35rem;display:block;line-height:1.15}
+.actbtn .p{font-size:.8rem;color:var(--ink-soft)}
+.rules{font-size:.95rem;color:var(--ink-soft);max-width:62ch;margin-top:1.4rem;border-top:1px solid var(--rule);padding-top:.8rem}
+.edition{font-family:var(--f-rubric);font-size:.75rem;letter-spacing:.06em;color:var(--ink-soft);margin-top:.6rem}
+
+.gallery{list-style:none;padding:0;margin:.6rem 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:.35rem .9rem}
+.gallery li{font-size:.92rem;padding:.2rem 0;border-bottom:1px dotted var(--rule)}
+.gallery li.locked{color:var(--ink-soft);opacity:.55}
+.gallery li i{font-style:normal;font-family:var(--f-rubric);font-size:.72rem;color:var(--ink-soft);margin-right:.35rem}
+
+.fade{animation:fade .35s ease}
+@keyframes fade{from{opacity:.25;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.fade,.shake{animation:none}.opt{transition:none}}
+@media (max-width:560px){h2{font-size:1.9rem}.opt{grid-template-columns:2.2rem 1fr}.opt .L{font-size:1.9rem}.ticks{gap:2px}}
+</style>
+
+<div class="wrap">
+  <header class="top" id="top" hidden>
+    <div class="toprow">
+      <div class="where" id="where"></div>
+      <div class="tools">
+        <button class="tool" id="bGallery" type="button">Finali strampalati <span id="gcount">0/48</span></button>
+        <button class="tool" id="bHome" type="button">Indice</button>
+        <button class="tool" id="bFull" type="button">Schermo intero</button>
+      </div>
+    </div>
+    <div class="ticks" id="ticks" aria-hidden="true"></div>
+    <div class="ticklab" aria-hidden="true"><span>§ 1</span><span>morte di Beatrice · § 19</span><span>§ 31</span></div>
+  </header>
+  <main id="main"></main>
+</div>
+<div class="veil" id="veil" hidden></div>
+
+<script>
+const ACTS=[
+ {n:"Atto I",t:"L'apparizione",p:"§§ 1–2 · incontro, saluto, visione, schermo"},
+ {n:"Atto II",t:"Il saluto e la lode",p:"§§ 5–17 · dal saluto negato a Tanto gentile"},
+ {n:"Atto III",t:"Dopo Beatrice",p:"§§ 19–31 · morte, tentazione, mirabile visione"}
+];
+
+/* Ogni tappa: c = scelta giusta, x = due scelte sbagliate con il loro finale */
+const S=[
+{a:0,p:1,title:"Firenze, quasi nove anni",
+ narr:["Il cielo del sole è tornato quasi nove volte allo stesso punto da quando sei nato. Davanti a te appare per la prima volta una bambina all'inizio del suo nono anno, vestita di <q>nobilissimo colore, umile ed onesto sanguigno</q>.","Molti la chiamano Beatrice."],
+ ask:"Che cosa fai?",
+ c:{t:"Resti lì, tremante: un dio più forte di te ti ha appena conquistato.",
+    cit:"Ecce deus fortior me qui veniens dominabitur michi",ref:"§ 1.5",
+    gloss:"Trema lo spirito della vita (nel cuore), si meraviglia lo spirito animale (nel cervello), piange lo spirito naturale (nel fegato). «D'allora innanzi dico che Amore segnoreggiò la mia anima» (§ 1.8)."},
+ x:[
+  {t:"Le offri metà della tua focaccia e la sfidi a chi sputa più lontano i noccioli di ciliegia.",
+   e:"Il patto della focaccia",
+   s:"Beatrice vince la gara con un tiro di tre braccia fiorentine. Diventate grandi amici, giocate a nascondino per anni e a diciott'anni lei ti chiama «fratello». Nessuno spirito trema, nessun sonetto nasce: la lirica italiana resta ferma a Guittone d'Arezzo.",
+   m:"Nella Vita nova l'amore non è un gioco tra coetanei: è un'apparizione che sconvolge gli spiriti."},
+  {t:"Corri da tuo padre e gli chiedi di combinare subito il matrimonio con la famiglia di lei.",
+   e:"Contratto davanti al notaio",
+   s:"I due padri firmano davanti a un notaio: dote, testimoni e una penale in fiorini d'oro. A undici anni sei promesso, a diciotto sposato, a venti litighi su chi deve comprare il sale. Amore, offeso, si trasferisce a Bologna da Guido Guinizelli.",
+   m:"L'amore stilnovista non punta alle nozze: Beatrice si contempla, non si sposa."}
+ ]},
+{a:0,p:1,title:"Nove anni dopo, all'ora nona",
+ narr:["Sono passati esattamente nove anni. Per una via, vestita di <q>colore bianchissimo</q> e in mezzo a due gentili donne più grandi, Beatrice si volta verso di te, che te ne stai lì <q>molto pauroso</q>, e ti saluta.","Sono le tre del pomeriggio: l'ora nona. È la prima volta che le sue parole arrivano alle tue orecchie."],
+ ask:"Che cosa fai dopo il saluto?",
+ c:{t:"Inebriato di dolcezza, ti allontani dalla gente e ti chiudi nella tua camera a pensare a lei.",
+    cit:"presi tanta dolcezza che come inebriato mi partìo da le genti e ricorsi al solingo luogo d'una mia camera",ref:"§ 1.13",
+    gloss:"Il saluto (la «salute») è insieme saluto e salvezza: «mi parve allora vedere tutti li termini de la beatitudine» (§ 1.12)."},
+ x:[
+  {t:"Le corri dietro per chiederle se il saluto vale anche per domani.",
+   e:"Inseguimento in Mercato Vecchio",
+   s:"Le due gentili donne ti scambiano per un borsaiolo e ti inseguono agitando le conocchie. Finisci dentro una cesta di cavoli in Mercato Vecchio. Da quel giorno, in tutta Firenze, ti chiamano «il Cavolo».",
+   m:"Il saluto è una beatitudine da custodire in solitudine, non da rincorrere."},
+  {t:"Chiedi alle due accompagnatrici a che ora ripassa domani, così ti fai trovare con un mazzo di rose.",
+   e:"Il fioraio di Por Santa Maria",
+   s:"Ti presenti ogni giorno all'ora nona con un mazzo di rose. Dopo un mese Beatrice cambia strada, i fiorai di Por Santa Maria ti nominano socio onorario e tu apri bottega. Gli affari vanno benissimo. La poesia un po' meno.",
+   m:"Il fedele d'Amore non organizza appuntamenti."}
+ ]},
+{a:0,p:2,title:"La visione del cuore mangiato",
+ narr:["Ti addormenti e sogni Amore, in una nebula color di fuoco: <q>Ego dominus tuus</q>. Fra le braccia tiene Beatrice avvolta in un drappo sanguigno; in mano ha il tuo cuore che arde.","Le fa mangiare il cuore, poi piangendo sale al cielo con lei. Ti svegli."],
+ ask:"Che cosa fai di questo sogno?",
+ c:{t:"Ne fai un sonetto e lo mandi ai «famosi trovatori» del tempo, chiedendo che lo interpretino.",
+    cit:"E questo fue quasi lo principio dell'amistà tra lui e me",ref:"§ 2.1",
+    gloss:"Rispondono in molti. Tra loro «quelli cu' io chiamo primo delli miei amici» (Guido Cavalcanti), con il sonetto Vedesti, al mio parere, onne valore. Il vero senso del sogno, dice Dante, «ora è manifestissimo a li più sempici» (§ 2.2).",
+    poem:"Ne nasce il sonetto «A ciascun'alma presa e gentil core»"},
+ x:[
+  {t:"Lo racconti a Beatrice appena la rivedi: «Stanotte hai mangiato il mio cuore».",
+   e:"La leggenda del mangiacuori",
+   s:"Beatrice impallidisce, le due gentili donne svengono, e in mezza giornata tutta Firenze dice che fai riti notturni. Il vescovo ti convoca. Riesci a dimostrare di essere innocuo solo recitando il Credo per tre ore di fila.",
+   m:"La visione si affida ai fedeli d'Amore, in versi. All'amata non si va a raccontare."},
+  {t:"Vai dall'indovino di piazza che, per due denari, legge i sogni nelle interiora di un pollo.",
+   e:"Il responso del pollo",
+   s:"Il responso è chiaro: devi mangiare più cuori, di pollo. Per un anno segui la dieta, diventi il miglior cliente dei rosticcieri di Firenze e scopri che il sogno significava soltanto «troppo fegatello a cena».",
+   m:"Il sogno d'amore è un enigma poetico: lo sciolgono i poeti, non gli indovini."}
+ ]},
+{a:0,p:2,title:"La retta linea",
+ narr:["L'amore ti consuma: sei debole e pallido, e molti invidiosi cercano di scoprire chi ami. Tu sorridi e non dici nulla.","Un giorno, in chiesa, guardi Beatrice. Ma a metà della <q>retta linea</q> fra lei e i tuoi occhi siede una gentile donna, che si meraviglia di come la fissi. Uscendo senti dire: <q>vedi come cotale donna distrugge la persona di costui</q>."],
+ ask:"Che cosa fai?",
+ c:{t:"Ne approfitti: fai di quella donna il tuo schermo e fingi di amarla.",
+    cit:"mantenente pensai di fare di questa gentile donna schermo de la veritade",ref:"§ 2.8",
+    gloss:"«Con questa donna mi celai alquanti anni e mesi e, per più fare credente altrui, feci per lei certe cosette per rima» (§ 2.9)."},
+ x:[
+  {t:"Chiarisci subito ad alta voce: «Ma no, io guardavo Beatrice, quella dietro!».",
+   e:"La proclamazione",
+   s:"Il sagrestano prende nota, il banditore ripete, entro sera lo sanno anche a Fiesole. Beatrice, travolta dalle chiacchiere, viene spedita da una zia a Prato «finché non si calmano le acque». Le acque non si calmano mai.",
+   m:"Il segreto va protetto: difendere l'amata dalle maldicenze è il primo dovere del fedele."},
+  {t:"Alla messa successiva ti siedi direttamente accanto a Beatrice, così nessuno si confonde più.",
+   e:"Scandalo in navata",
+   s:"Ti siedi nella parte delle donne. Il prete interrompe la predica, le matrone ti cacciano a colpi di libro d'ore e il fatto entra nelle cronache cittadine alla voce «stranezze».",
+   m:"Più ti avvicini, più ti scopri: lo stilnovista guarda da lontano."}
+ ]},
+{a:1,p:5,title:"Il saluto negato",
+ narr:["La prima donna-schermo è partita e Amore te ne ha indicata una seconda. Fingi così bene che la gente ne parla <q>oltre li termini de la cortesia</q>.","La voce arriva a Beatrice che, passandoti accanto, ti nega il suo dolcissimo saluto. In quel saluto c'era tutta la tua beatitudine."],
+ ask:"Che cosa fai?",
+ c:{t:"Vai a piangere in un luogo solitario, poi in camera invochi Amore e ti addormenti piangendo come un bambino.",
+    cit:"dicendo «Amore, aiuta lo tuo fedele» m'adormentai come un pargoletto battuto lagrimando",ref:"§ 5.9",
+    gloss:"Qui Dante spiega che cosa faceva in lui il saluto: nessun nemico gli restava, perdonava chiunque, e a ogni domanda avrebbe risposto solo «Amore» (§ 5.4)."},
+ x:[
+  {t:"Le vai incontro e le chiedi spiegazioni: «Scusa, perché non mi hai salutato?».",
+   e:"Il chiarimento",
+   s:"Le spieghi che la seconda donna era una finzione, come la prima, e che ami lei da quando avevi nove anni. Beatrice ascolta tutto, poi chiama le guardie del podestà. Il verbale dice: «giovane poeta, confuso, parla di schermi».",
+   m:"Al dolore d'amore il fedele risponde con le lacrime e con Amore, non con un interrogatorio."},
+  {t:"Ti vendichi: da oggi saluti con grandi inchini tutte le donne di Firenze tranne lei.",
+   e:"Il salutatore",
+   s:"Saluti duecento donne al giorno. Ti viene il torcicollo, il barbiere ti prescrive impacchi di malva, e Beatrice non se ne accorge nemmeno: ha smesso di passare da quella strada.",
+   m:"La ripicca è roba da trovatori offesi, non da cuori gentili."}
+ ]},
+{a:1,p:7,title:"Il gabbo",
+ narr:["Un amico ti porta a un banchetto di nozze pieno di gentili donne. Un tremore ti parte dal petto, ti appoggi a una pittura, alzi gli occhi: tra le donne c'è Beatrice.","I tuoi spiriti vengono distrutti. Le donne si accorgono della tua trasfigurazione e, insieme a Beatrice, ridono di te."],
+ ask:"Che cosa fai?",
+ c:{t:"Ti lasci portare fuori dall'amico, gli dici che sei stato sul confine della vita, e ti ritiri nella «camera de le lagrime».",
+    cit:"Io tenni li piedi in quella parte della vita di là da la quale non si pò ire più per intendimento di ritornare",ref:"§ 7.8",
+    gloss:"In camera, piangendo e vergognandosi, pensa: «Se questa donna sapesse la mia condizione, io non credo che così gabbasse la mia persona» (§ 7.9). Seguono altri due sonetti a lei: Ciò che m'incontra e Spesse fïate (§§ 8–9).",
+    poem:"Ne nasce il sonetto «Con l'altre donne mia vista gabbate»"},
+ x:[
+  {t:"Rispondi per le rime con un sonetto comico alla Cecco Angiolieri.",
+   e:"Sfida in rima",
+   s:"Il sonetto piace moltissimo: gli invitati ridono, lo sposo ti offre da bere e Cecco Angiolieri ti scrive da Siena per proporti un giro nelle taverne. Beatrice ride più di tutti, ma ride di te. Il dolce stil novo chiude prima di aprire.",
+   m:"Al gabbo il fedele non risponde con lo scherno: risponde con le lacrime."},
+  {t:"Per riprenderti ti butti sui dolci del banchetto e intoni un canto per gli sposi.",
+   e:"Il cantore di nozze",
+   s:"Il canto commuove tutti, la sposa piange, i suoceri ti ingaggiano per il prossimo matrimonio. Diventi il cantore di nozze più richiesto di Firenze. Beatrice ti prenota per il suo.",
+   m:"Lo spirito di chi ama, davanti a lei, non canta: si smarrisce."}
+ ]},
+{a:1,p:10,title:"A che fine ami?",
+ narr:["Passi vicino a un gruppo di donne che conoscono bene il tuo segreto: hanno assistito a molte tue «sconfitte». Beatrice non c'è.","Una di loro, dal parlare gentile e leggiadro, ti chiama per nome: <q>A che fine ami tu questa tua donna poi che tu non puoi sostenere la sua presenza? Dilloci, ché certo lo fine di cotale amore conviene che sia novissimo</q>."],
+ ask:"Che cosa rispondi?",
+ c:{t:"«Il fine era il suo saluto. Ora che me l'ha negato, Amore ha posto la mia beatitudine in ciò che non mi può venire meno.»",
+    cit:"lo mio signore Amore, la sua mercede, à posta tutta la mia beatitudine in quello che non mi puote venire meno",ref:"§ 10.6",
+    gloss:"È la svolta del libro. E dove sta, ora, questa beatitudine? «In quelle parole che lodano la donna mia» (§ 10.8)."},
+ x:[
+  {t:"«Al fine di sposarla, avere sei figli e una casa con l'orto in Oltrarno.»",
+   e:"Progetto di vita",
+   s:"Le donne si guardano e scoppiano a ridere. In mezz'ora il tuo orto in Oltrarno fa il giro di Firenze. Ricevi offerte da tre sensali di matrimonio e un preventivo per le cipolle.",
+   m:"Un amore che cerca un premio, nozze comprese, non è ancora amore gentile."},
+  {t:"«Al fine di diventare famoso: un poeta senza un grande amore non vende un sonetto.»",
+   e:"Il poeta di mestiere",
+   s:"La risposta è sincera ma poco gentile. Le donne riferiscono, Beatrice scopre di essere un argomento pubblicitario, e tu diventi il poeta ufficiale dell'Arte di Calimala: per vent'anni scrivi sonetti in lode dei panni di lana.",
+   m:"Chi ama per la fama ama se stesso."}
+ ]},
+{a:1,p:10,title:"Lungo un rivo chiaro",
+ narr:["Hai deciso: d'ora in poi scriverai solo in lode di lei. Ma l'argomento ti sembra troppo alto e per giorni non osi cominciare.","Poi, passando lungo un ruscello <q>chiaro molto</q>, ti viene una gran voglia di dire. Ti chiedi come farlo, e a chi rivolgere le tue parole."],
+ ask:"A chi parli, nella nuova canzone?",
+ c:{t:"Solo alle donne gentili, quelle che hanno «intelletto d'amore».",
+    cit:"la mia lingua parlò quasi come per se stessa mossa e disse: «Donne ch'avete intelletto d'amore»",ref:"§ 10.13",
+    gloss:"Dante pensa che non convenga parlare di lei «sed io non parlassi a donne in seconda persona, e non ad ogni donna, ma solamente a coloro che sono gentile» (§ 10.12). È la canzone al centro del libro.",
+    poem:"Ne nasce la canzone «Donne ch'avete intelletto d'amore»"},
+ x:[
+  {t:"A tutte le donne di Firenze, senza distinzioni: più ascoltatrici, più gloria.",
+   e:"Lettura in Mercato Vecchio",
+   s:"Leggi la canzone tra i banchi del mercato. Una fruttivendola chiede se la Beatrice della canzone è quella del pesce; un'altra vuole sapere quanto costa un sonetto per la figlia che si sposa. Torni a casa con molte ordinazioni e nessuna lode.",
+   m:"La lode di Beatrice non è per tutti: serve un cuore che capisca Amore."},
+  {t:"Direttamente a Beatrice, dandole del tu: chi meglio di lei?",
+   e:"Lettera respinta",
+   s:"Beatrice riceve la canzone, arriva al terzo verso e la restituisce con una nota a margine: «Non mi conosci abbastanza». Avevi dimenticato che parlarle direttamente «non è degno».",
+   m:"Già al § 5 Amore l'aveva detto: a lei non si parla in modo diretto."}
+ ]},
+{a:1,p:17,title:"Tanto gentile",
+ narr:["Beatrice è ormai in tanta grazia che, quando passa, la gente corre a vederla. Chi le è vicino non osa alzare gli occhi né rispondere al suo saluto. Lei va <q>coronata e vestita d'umiltade</q>.","C'è chi dice: <q>Questa non è femina, anzi è uno de li bellissimi angeli del cielo</q>. Tu vuoi riprendere lo stile della lode."],
+ ask:"Che cosa scrivi?",
+ c:{t:"Un sonetto sugli effetti che lei produce su chi la guarda: tutti tacciono, tremano, sospirano, come davanti a un miracolo.",
+    cit:"propuosi di dire parole nelle quali dessi ad intendere de le sue mirabili e eccellenti operazioni",ref:"§ 17.4",
+    gloss:"Non una descrizione del corpo, ma degli effetti: Beatrice è «una cosa venuta / da cielo in terra a miracol mostrare». Segue Vede perfettamente onne salute, sulla virtù che passa alle altre donne.",
+    poem:"Ne nasce il sonetto «Tanto gentile e tanto onesta pare»"},
+ x:[
+  {t:"Un sonetto che descrive con precisione capelli, bocca, mani e vestito, dal cappuccio alle scarpe.",
+   e:"Inventario",
+   s:"Il sonetto è così dettagliato che sembra un inventario notarile. Un sarto lo usa come cartamodello e copia il vestito per mezza Firenze. Il mese dopo venti ragazze girano vestite come Beatrice, e nessuno capisce più chi sia l'originale.",
+   m:"La lode stilnovista non descrive il corpo: racconta il miracolo."},
+  {t:"Un sonetto in cui ti lamenti che tutti guardano lei e nessuno guarda te.",
+   e:"«E io?»",
+   s:"Il sonetto si intitola «E io?» e gira per Firenze come una lagna. Guido ti manda un biglietto di due parole: «Datti pace». Per la prima volta la gente corre a vedere te. Ma per ridere.",
+   m:"Le donne del § 10 erano state chiare: basta parlare di sé, si parla di lei."}
+ ]},
+{a:2,p:19,title:"Quomodo sedet sola civitas",
+ narr:["Hai appena finito la prima stanza di una canzone quando <q>lo Signore de la giustizia chiamòe questa gentilissima a gloriare</q>. Beatrice è morta.","Ti chiedi perché il numero nove l'abbia accompagnata per tutta la vita, fino alla morte."],
+ ask:"Qual è, per Dante, la ragione più vera per cui il nove era «amico» di Beatrice?",
+ c:{t:"La radice del nove è il tre, cioè la Trinità: Beatrice era un nove, cioè un miracolo.",
+    cit:"ella era un nove, cioè uno miracolo, la cui radice, cioè del miracolo, è solamente la mirabile Trinitade",ref:"§ 19.6",
+    gloss:"Muore nel nono giorno del mese (all'uso d'Arabia), nel nono mese dell'anno (all'uso di Siria) e nell'anno in cui il dieci si era compiuto nove volte nel suo secolo: il 1290 (§ 19.4)."},
+ x:[
+  {t:"Perché abitava al numero nove.",
+   e:"Il catasto",
+   s:"Nel 1290 le case di Firenze non hanno numeri civici. Passi tre mesi negli uffici del Comune per dimostrare il contrario. Il funzionario ti dà ragione per sfinimento e ti nomina ispettore dei portoni.",
+   m:"Il nove di Beatrice non viene dalla terra: viene dal cielo."},
+  {t:"Perché aveva nove fratelli e nove gatti.",
+   e:"Il censimento felino",
+   s:"Fai un censimento dei gatti di casa sua. Ne trovi tre e mezzo. La teoria crolla e con lei la tua fama di matematico. Brunetto Latini, il tuo maestro, ti consiglia di tornare alla retorica.",
+   m:"Dante cerca una ragione «più sottile»: teologica, non domestica."}
+ ]},
+{a:2,p:28,title:"L'avversario della Ragione",
+ narr:["Da una finestra una gentile donna ti guarda con grande pietà, e i tuoi occhi cominciano a dilettarsi «troppo» di lei. Un pensiero ti dice: <q>Questa è una donna gentile, bella, giovane e savia</q>, forse mandata da Amore per darti pace.","Poi un giorno, verso l'ora nona, ti appare Beatrice con le vesti sanguigne del primo incontro, giovane come allora."],
+ ask:"Che cosa fai?",
+ c:{t:"Ti penti, scacci quel «desiderio malvagio» e tutti i tuoi pensieri tornano a Beatrice.",
+    cit:"lo mio cuore cominciò dolorosamente a pentére de lo desiderio a cui sì vilmente s'avea lasciato possedere alquanti die contra la costanzia della Ragione",ref:"§ 28.2",
+    gloss:"Gli occhi piangono tanto che intorno a loro compare un cerchio color porpora: «de la loro vanitade fuoro degnamente guiderdonati» (§ 28.5). Prima c'erano stati Color d'amore, L'amaro lagrimar e Gentil pensero (§§ 25–27).",
+    poem:"Ne nasce il sonetto «Lasso!, per forza di molti sospiri»"},
+ x:[
+  {t:"Segui il motto di Andrea Cappellano: «Novus amor veterem compellit abire».",
+   e:"Chiodo scaccia chiodo",
+   s:"Ti dichiari alla donna della finestra. Vi sposate, avete tre figli e un cane di nome Ovidio. Vivete felici. La Vita nova si ferma al paragrafo 27 e, settecento anni dopo, una classe di Torino la studia come opera incompiuta.",
+   m:"Dante scrive il finale proprio per smentire quel motto: l'amore nuovo non scaccia quello per Beatrice."},
+  {t:"Cerchi un compromesso: Beatrice la domenica, la donna gentile nei giorni feriali.",
+   e:"Il calendario",
+   s:"Appendi un calendario in camera. Alla seconda settimana ti confondi: mandi alla donna gentile il sonetto della domenica e a Beatrice, in cielo, quello del martedì. Nessuna delle due gradisce. Amore si dimette per eccesso di burocrazia.",
+   m:"Con la Ragione non si fanno turni."}
+ ]},
+{a:2,p:31,title:"La mirabile visione",
+ narr:["Hai scritto un ultimo sonetto, <q>Oltre la spera che più larga gira</q>: un tuo sospiro sale oltre il cielo più alto e vede Beatrice nella gloria.","Poi ti appare una <q>mirabile visione</q>, in cui vedi cose che cambiano tutto."],
+ ask:"Che cosa decidi?",
+ c:{t:"Di non dire più di lei finché non potrai farlo più degnamente: studierai per dire di lei ciò che non fu mai detto di nessuna.",
+    cit:"io spero di dire di lei quello che mai non fue detto d'alcuna",ref:"§ 31.2",
+    gloss:"Il libello si chiude con Beatrice che «gloriosamente mira nella faccia di Colui qui est per omnia secula benedictus» (§ 31.3).",
+    poem:"Ne nascerà, anni dopo, la Commedia"},
+ x:[
+  {t:"Di scrivere subito, finché l'ispirazione è calda, il sonetto più bello di tutti.",
+   e:"Il sonetto definitivo",
+   s:"Scrivi per tutta la notte. Ne escono quattordici versi bellissimi e del tutto simili agli altri. Li leggono, li apprezzano, li dimenticano. Non scriverai mai un poema di cento canti: ti sei accontentato di quattordici versi.",
+   m:"Per dire di Beatrice ciò che merita non basta un sonetto: serve uno studio lungo anni."},
+  {t:"Di chiudere con la poesia e iscriverti all'Arte dei Medici e Speziali.",
+   e:"Lo speziale",
+   s:"Ti iscrivi all'Arte (cosa che, in effetti, prima o poi farai davvero). Vendi pepe e zenzero, tieni i conti in ordine, vivi tranquillo. Beatrice, dall'Empireo, guarda il bancone e sospira. Nessuno saprà mai che cosa c'era oltre la selva oscura.",
+   m:"La visione non chiude la storia: annuncia un'opera più grande."}
+ ]}
+];
+
+const TOTAL_BAD=S.length*2;
+const ACT_START=ACTS.map((_,i)=>S.findIndex(s=>s.a===i));
+const $=id=>document.getElementById(id);
+let st={view:"home",i:0,phase:"ask",chosen:null,found:[],tries:0,order:null};
+
+function loadFound(){try{const v=JSON.parse(localStorage.getItem("vn-finali")||"[]");if(Array.isArray(v))st.found=v}catch(e){}}
+function saveFound(){try{localStorage.setItem("vn-finali",JSON.stringify(st.found))}catch(e){}}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+function ticks(p){
+  const t=$("ticks");t.innerHTML="";
+  for(let k=1;k<=31;k++){const d=document.createElement("div");d.className="tick"+(k<p?" done":k===p?" now":"");t.appendChild(d)}
+}
+function header(){
+  const top=$("top");
+  if(st.view==="home"){top.hidden=true;return}
+  top.hidden=false;
+  const s=S[Math.min(st.i,S.length-1)];
+  $("where").innerHTML=st.view==="end"
+    ?"Libro de la memoria · <b>Explicit</b>"
+    :`Libro de la memoria · <b>§ ${s.p}</b> · tappa ${st.i+1} di ${S.length}`;
+  ticks(st.view==="end"?32:s.p);
+  $("gcount").textContent=`${st.found.length}/${TOTAL_BAD}`;
+}
+
+function home(){
+  st.view="home";header();
+  $("main").innerHTML=`<section class="cover fade">
+    <div class="act">Dante Alighieri · Vita nova</div>
+    <h1>Incipit vita nova</h1>
+    <p class="sub">Sei Dante. Hai quasi nove anni e stai per vedere Beatrice per la prima volta. Per conquistarne l'amore, stilnovisticamente parlando, devi fare esattamente ciò che fa il protagonista del libello. Ogni altra scelta porta a un finale strampalato.</p>
+    <button class="go" id="start" type="button">Comincia dal § 1</button>
+    <div class="acts">${ACTS.map((a,i)=>`<button class="actbtn" type="button" data-act="${i}"><span class="n">${a.n}</span><span class="t">${a.t}</span><span class="p">${a.p}</span></button>`).join("")}</div>
+    <p class="rules">${S.length} tappe in tre atti, ciascuna legata a un paragrafo del libello. Una sola scelta per tappa è fedele al testo; le altre due chiudono il libro con un <i>Explicit</i> prima del tempo. Dopo ogni scelta giusta compare la citazione con il riferimento al paragrafo. Alla lavagna: tocca una risposta, oppure premi A, B, C sulla tastiera e Invio per proseguire.</p>
+    <p class="edition">Testo e paragrafatura: Vita nova, a cura di Stefano Carrai, BUR 2009</p>
+  </section>`;
+  $("start").onclick=()=>go(0);
+  document.querySelectorAll("[data-act]").forEach(b=>b.onclick=()=>go(ACT_START[+b.dataset.act]));
+}
+
+function go(i){st.view="play";st.i=i;st.phase="ask";st.chosen=null;st.order=null;render();window.scrollTo({top:0,behavior:"smooth"})}
+
+function render(){
+  if(st.view==="home")return home();
+  if(st.view==="end")return victory();
+  header();
+  const s=S[st.i];
+  if(!st.order)st.order=shuffle([{k:"c"},{k:0},{k:1}]);
+  const optText=o=>o.k==="c"?s.c.t:s.x[o.k].t;
+  let body=`<section class="fade">
+    <div class="act">${ACTS[s.a].n} · ${ACTS[s.a].t}</div>
+    <h2>${esc(s.title)}</h2>
+    <div class="narr">${s.narr.map(p=>`<p>${p}</p>`).join("")}</div>`;
+  if(st.phase==="ask"){
+    body+=`<p class="ask">${esc(s.ask)}</p>
+    <div class="opts">${st.order.map((o,n)=>`<button class="opt" type="button" data-o="${n}"><span class="L">${"ABC"[n]}</span><span>${esc(optText(o))}</span></button>`).join("")}</div>
+    <p class="hintkeys">Tasti A · B · C</p>`;
+  }else{
+    body+=`<div class="libello fade">
+      <div class="rub">Così fa Dante · nel libello</div>
+      <p class="chosen">${esc(s.c.t)}</p>
+      <p class="cit">«${esc(s.c.cit)}»<cite>${s.c.ref}</cite></p>
+      <p class="gloss">${esc(s.c.gloss)}</p>
+      ${s.c.poem?`<span class="poem">${esc(s.c.poem)}</span>`:""}
+      <div><button class="go" id="next" type="button">${st.i===S.length-1?"Chiudi il libello":"Prosegui"}</button></div>
+    </div>`;
+  }
+  body+=`</section>`;
+  $("main").innerHTML=body;
+  if(st.phase==="ask")document.querySelectorAll("[data-o]").forEach(b=>b.onclick=()=>pick(+b.dataset.o));
+  else{$("next").onclick=next;$("next").focus({preventScroll:true})}
+}
+
+function pick(n){
+  const o=st.order[n],s=S[st.i];
+  if(o.k==="c"){st.phase="done";render();return}
+  st.tries++;
+  const x=s.x[o.k],id=`${st.i}-${o.k}`;
+  if(!st.found.includes(id)){st.found.push(id);saveFound()}
+  const num=st.i*2+o.k+1;
+  header();
+  const v=$("veil");
+  v.innerHTML=`<div class="card shake" role="dialog" aria-modal="true" aria-labelledby="bt">
+    <div class="explicit">Explicit vita nova<small>finale strampalato n. ${num} di ${TOTAL_BAD}</small></div>
+    <h3 id="bt">${esc(x.e)}</h3>
+    <p class="tale">${esc(x.s)}</p>
+    <p class="morale"><b>Morale stilnovistica</b> · ${esc(x.m)}</p>
+    <div class="row">
+      <button class="go" id="retry" type="button">Torna alla scelta</button>
+      <button class="go ghost" id="restart" type="button">Ricomincia dal § 1</button>
+    </div></div>`;
+  v.hidden=false;
+  $("retry").onclick=()=>{v.hidden=true;st.order=null;render()};
+  $("restart").onclick=()=>{v.hidden=true;go(0)};
+  $("retry").focus();
+}
+
+function next(){if(st.i<S.length-1)go(st.i+1);else{st.view="end";victory()}}
+
+function victory(){
+  header();
+  $("main").innerHTML=`<section class="cover fade">
+    <div class="act">§ 31 · Amen</div>
+    <h1>Explicit vita nova</h1>
+    <p class="sub">Hai seguito il libello fino all'ultima riga. Non hai conquistato Beatrice come si conquista una fidanzata: hai capito che la beatitudine sta nelle parole che la lodano, e che l'amore sopravvive alla morte e alla tentazione.</p>
+    <p class="sub">Le dirai «quello che mai non fue detto d'alcuna». Più di dieci anni dopo, nel canto XXX del Purgatorio, Beatrice tornerà davvero, <i>vestita di color di fiamma viva</i>.</p>
+    <p class="edition">Finali strampalati scoperti: ${st.found.length} di ${TOTAL_BAD}</p>
+    <div class="row"><button class="go" id="again" type="button">Ricomincia dal § 1</button><button class="go ghost" id="gal" type="button">Vedi i finali</button></div>
+  </section>`;
+  $("again").onclick=()=>go(0);$("gal").onclick=gallery;
+}
+
+function gallery(){
+  const v=$("veil");
+  const items=[];S.forEach((s,i)=>s.x.forEach((x,k)=>{const id=`${i}-${k}`,on=st.found.includes(id);items.push(`<li class="${on?"":"locked"}"><i>§ ${s.p}</i>${on?esc(x.e):"· · ·"}</li>`)}));
+  v.innerHTML=`<div class="card" role="dialog" aria-modal="true" aria-labelledby="gt">
+    <div class="explicit">Explicit anticipati<small>${st.found.length} di ${TOTAL_BAD} scoperti</small></div>
+    <h3 id="gt">Finali strampalati</h3>
+    <ul class="gallery">${items.join("")}</ul>
+    <div class="row"><button class="go" id="gclose" type="button">Chiudi</button><button class="go ghost" id="greset" type="button">Azzera la raccolta</button></div></div>`;
+  v.hidden=false;
+  $("gclose").onclick=()=>{v.hidden=true;$("gcount").textContent=`${st.found.length}/${TOTAL_BAD}`};
+  $("greset").onclick=()=>{st.found=[];saveFound();gallery()};
+  $("gclose").focus();
+}
+
+$("bGallery").onclick=gallery;
+$("bHome").onclick=()=>{$("veil").hidden=true;home()};
+$("bFull").onclick=()=>{try{if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen().catch(()=>{})}catch(e){}};
+
+document.addEventListener("keydown",e=>{
+  const v=$("veil");
+  if(!v.hidden){if(e.key==="Escape"||e.key==="Enter"){const b=$("retry")||$("gclose");if(b){e.preventDefault();b.click()}}return}
+  if(st.view!=="play")return;
+  const k=e.key.toLowerCase();
+  if(st.phase==="ask"){const n="abc".indexOf(k);const m="123".indexOf(k);const idx=n>=0?n:m;if(idx>=0){e.preventDefault();pick(idx)}}
+  else if(k==="enter"||k===" "){e.preventDefault();next()}
+});
+
+window.claude?.hot?.snapshot?.(()=>({view:st.view,i:st.i,phase:st.phase,found:st.found}));
+function start(d){
+  loadFound();
+  if(d&&d.view){st.view=d.view;st.i=Math.min(d.i||0,S.length-1);st.phase=d.phase||"ask";if(Array.isArray(d.found))st.found=d.found}
+  render();
+}
+window.claude?.hot?.ready?window.claude.hot.ready(start):start(window.claude?.hot?.data??{});
+</script>
+
+</body></html>
